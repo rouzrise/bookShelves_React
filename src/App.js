@@ -15,47 +15,37 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({books: books})
+      this.setState({books})
     } )
   }
 
   updateQuery = (query) => {
-    this.setState({
-      query: query
-    })
-    let showingBooks = []
-    if (query) {
-      BooksAPI.search(query).then(response => {
-        if (response.length) {
-          
-          showingBooks = response.map(book => {
-            const index = this.state.books.findIndex(newbook => newbook.id === book.id)
-            if (index >= 0) {
-              return this.state.books[index]
-            } else {
-              //////////////////////////
-              return book
+        this.setState({query: query})
+        let showingBooks = []
+        if (query) {
+          BooksAPI.search(query).then(response => {
+            if (response.length) {
+              showingBooks = response.map(b => {
+                const index = this.state.books.findIndex(c => c.id === b.id)
+               if( index >= 0 ) {
+                  return this.state.books[index]
+                } else {
+                  return b
+                }
+              })
             }
+            this.setState({showingBooks})
           })
         }
-        this.setState({showingBooks: showingBooks})
-      })
-    }
-    else {
-      this.setState({showingBooks: showingBooks})
-    }
-  }
-
-  updateQuery = (query) => {
-    this.setState({
-      query: query.trim()
-    })
-  }
+        else {
+          this.setState({showingBooks})
+        }
+       }
 
   render() {
 
     //DESTRUCTURING
-    const { query, showingBooks } = this.state;
+    const { query, showingBooks} = this.state;
 
     //SORTING RESULTS ALPHABETICALLY
     // showingBooks.sort(sortBy('name'));
@@ -76,7 +66,8 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="search-books-results">
-              <ol className="books-grid"></ol>
+              <ol className="books-grid">
+              {console.log('Hello', showingBooks)}</ol>
             </div>
           </div>
         )} />
