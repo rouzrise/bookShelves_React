@@ -3,13 +3,63 @@ import React from 'react'
 import './App.css'
 import ListBooks from './Components/ListBooks';
 import {Route, Link} from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
+import sortBy from 'sort-by';
 
 class BooksApp extends React.Component {
   state = {
-    showSearchPage: false
+    books: [],
+    query: '',
+    showingBooks: []
+  }
+
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({books: books})
+    } )
+  }
+
+  updateQuery = (query) => {
+    this.setState({
+      query: query
+    })
+    let showingBooks = []
+    if (query) {
+      BooksAPI.search(query).then(response => {
+        if (response.length) {
+          
+          showingBooks = response.map(book => {
+            const index = this.state.books.findIndex(newbook => newbook.id === book.id)
+            if (index >= 0) {
+              return this.state.books[index]
+            } else {
+              //////////////////////////
+              return book
+            }
+          })
+        }
+        this.setState({showingBooks: showingBooks})
+      })
+    }
+    else {
+      this.setState({showingBooks: showingBooks})
+    }
+  }
+
+  updateQuery = (query) => {
+    this.setState({
+      query: query.trim()
+    })
   }
 
   render() {
+
+    //DESTRUCTURING
+    const { query, showingBooks } = this.state;
+
+    //SORTING RESULTS ALPHABETICALLY
+    // showingBooks.sort(sortBy('name'));
+
     return (
       <div className="app">
 
@@ -18,15 +68,10 @@ class BooksApp extends React.Component {
             <div className="search-books-bar">
               <Link className="close-search" to='/'>Close</Link>
               <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <input type="text" placeholder="Search by title or author"/>
+                <input type="text" 
+                        placeholder="Search by title or author"
+                        value={query}
+                        onChange={(e) => this.updateQuery(e.target.value)}/>
 
               </div>
             </div>
