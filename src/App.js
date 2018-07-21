@@ -20,29 +20,29 @@ class BooksApp extends React.Component {
     } )
   }
 
-  updateQuery = (query) => {
-        this.setState({query: query})
-        let showingBooks = []
-        if (query) {
-          BooksAPI.search(query).then(response => {
-            if (response.length) {
-              showingBooks = response.map(b => {
-                const index = this.state.books.findIndex(c => c.id === b.id)
-               if( index >= 0 ) {
-                  return this.state.books[index]
-                } else {
-                  return b
-                }
-              })
-            }
+  // updateQuery = (query) => {
+  //       this.setState({query: query})
+  //       let showingBooks = []
+  //       if (query) {
+  //         BooksAPI.search(query).then(response => {
+  //           if (response.length) {
+  //             showingBooks = response.map(b => {
+  //               const index = this.state.books.findIndex(c => c.id === b.id)
+  //              if( index >= 0 ) {
+  //                 return this.state.books[index]
+  //               } else {
+  //                 return b
+  //               }
+  //             })
+  //           }
 
-            this.setState({showingBooks: showingBooks})
-          })
-        }
-        else {
-          this.setState({showingBooks: showingBooks})
-        }
-       }
+  //           this.setState({showingBooks: showingBooks})
+  //         })
+  //       }
+  //       else {
+  //         this.setState({showingBooks: showingBooks})
+  //       }
+  //      }
 
   // updateQuery = (query) => {
   //   this.setState ({query: query})
@@ -60,15 +60,26 @@ class BooksApp extends React.Component {
   //     })
   //   }
   // }
+
+  //I do like this function better
+    updateQuery = (query) => {
+    this.setState ({query: query})
+  
+    if (query) {
+      const match = new RegExp(EscapeRegEx(query), 'i');
+      let showingBooks = [];
+      showingBooks = this.state.books.filter((book) => match.test(book.title + book.authors))
+        this.setState({ 
+          showingBooks: showingBooks
+        })
+    }
+  }
   
 
   render() {
 
     //DESTRUCTURING
     const { query, showingBooks, books} = this.state;
-
-
-
 
     return (
       <div className="app">
@@ -111,7 +122,7 @@ class BooksApp extends React.Component {
               )
               }
             
-              {console.log('Hello', books)}</ol>
+              {console.log('Hello', showingBooks)}</ol>
             </div>
           </div>
         )} />
