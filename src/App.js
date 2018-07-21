@@ -6,6 +6,7 @@ import {Route, Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import EscapeRegEx from 'escape-string-regexp';
 import sortBy from 'sort-by';
+import Book from './Components/Book'
 
 class BooksApp extends React.Component {
   state = {
@@ -16,33 +17,34 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({books})
+      this.setState({books: books})
     } )
   }
 
-  // updateQuery = (query) => {
-  //       this.setState({query: query})
-  //       let showingBooks = []
-  //       if (query) {
-  //         BooksAPI.search(query).then(response => {
-  //           if (response.length) {
-  //             showingBooks = response.map(b => {
-  //               const index = this.state.books.findIndex(c => c.id === b.id)
-  //              if( index >= 0 ) {
-  //                 return this.state.books[index]
-  //               } else {
-  //                 return b
-  //               }
-  //             })
-  //           }
+  //doesn't work correctly
+  updateQuery = (query) => {
+        this.setState({query: query})
+        let showingBooks = []
+        if (query) {
+          BooksAPI.search(query).then(response => {
+            if (response.length) {
+              showingBooks = response.map(b => {
+                const index = this.state.books.findIndex(c => c.id === b.id)
+               if( index >= 0 ) {
+                  return this.state.books[index]
+                } else {
+                  return b
+                }
+              })
+            }
 
-  //           this.setState({showingBooks: showingBooks})
-  //         })
-  //       }
-  //       else {
-  //         this.setState({showingBooks: showingBooks})
-  //       }
-  //      }
+            this.setState({showingBooks: showingBooks})
+          })
+        }
+        else {
+          this.setState({showingBooks: showingBooks})
+        }
+       }
 
   // updateQuery = (query) => {
   //   this.setState ({query: query})
@@ -61,19 +63,19 @@ class BooksApp extends React.Component {
   //   }
   // }
 
-  //I do like this function better
-    updateQuery = (query) => {
-    this.setState ({query: query})
   
-    if (query) {
-      const match = new RegExp(EscapeRegEx(query), 'i');
-      let showingBooks = [];
-      showingBooks = this.state.books.filter((book) => match.test(book.title + book.authors))
-        this.setState({ 
-          showingBooks: showingBooks
-        })
-    }
-  }
+  //   updateQuery = (query) => {
+  //   this.setState ({query: query})
+  
+  //   if (query) {
+  //     const match = new RegExp(EscapeRegEx(query), 'i');
+  //     let showingBooks = [];
+  //     showingBooks = this.state.showingBooks.filter((book) => match.test(book.title + book.authors))
+  //       this.setState({ 
+  //         showingBooks: showingBooks
+  //       })
+  //   }
+  // }
   
 
   render() {
@@ -98,31 +100,14 @@ class BooksApp extends React.Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-              {showingBooks.map((book) => 
-                (
-                  <li>
-                  <div className="book">
-                    <div className="book-top">
-                      <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: book.imageLinks ? `url(${book.imageLinks.thumbnail})` : '' }}></div>
-                      <div className="book-shelf-changer">
-                        <select>
-                          <option value="move" disabled>Move to...</option>
-                          <option value="currentlyReading">Currently Reading</option>
-                          <option value="wantToRead">Want to Read</option>
-                          <option value="read">Read</option>
-                          <option value="none">None</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="book-title">{book.title ? book.title : ''}</div>
-                    <div className="book-authors">{book.authors ? book.authors : ''}</div>
-                  </div>
-                </li> 
-                )
-              )
-              }
-            
-              {console.log('Hello', showingBooks)}</ol>
+                {showingBooks.map((book, index) => 
+                  (
+                    <li key={index}>
+                      <Book book={book}/>
+                  </li> 
+                  ))
+                }
+              </ol>
             </div>
           </div>
         )} />
