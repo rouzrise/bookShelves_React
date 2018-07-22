@@ -2,11 +2,12 @@ import React from 'react'
 // import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './Components/ListBooks';
+import Book from './Components/Book'
 import {Route, Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import EscapeRegEx from 'escape-string-regexp';
 import sortBy from 'sort-by';
-import Book from './Components/Book'
+
 
 class BooksApp extends React.Component {
   state = {
@@ -22,46 +23,58 @@ class BooksApp extends React.Component {
   }
 
   //doesn't work correctly
-  updateQuery = (query) => {
-        this.setState({query: query})
-        let showingBooks = []
-        if (query) {
-          BooksAPI.search(query).then(response => {
-            if (response.length) {
-              showingBooks = response.map(b => {
-                const index = this.state.books.findIndex(c => c.id === b.id)
-               if( index >= 0 ) {
-                  return this.state.books[index]
-                } else {
-                  return b
-                }
-              })
-            }
-
-            this.setState({showingBooks: showingBooks})
-          })
-        }
-        else {
-          this.setState({showingBooks: showingBooks})
-        }
-       }
-
   // updateQuery = (query) => {
-  //   this.setState ({query: query})
-  
-  //   if (query) {
-  //     BooksAPI.search(query).then(response => {
+  //       this.setState({query: query})
+  //       let showingBooks = []
+  //       if (query) {
+  //         BooksAPI.search(query).then(response => {
+  //           if (response.length) {
+  //             showingBooks = response.map(b => {
+  //               const index = this.state.books.findIndex(c => c.id === b.id)
+  //              if( index >= 0 ) {
+  //                 return this.state.books[index]
+  //               } else {
+  //                 return b
+  //               }
+  //             })
+  //           }
 
-  //       if (response.length) {
-      
-  //       this.setState({ 
-  //         showingBooks: response
-  //       })
-
+  //           this.setState({showingBooks: showingBooks})
+  //         })
   //       }
-  //     })
-  //   }
-  // }
+  //       else {
+  //         this.setState({showingBooks: showingBooks})
+  //       }
+  //      }
+
+    updateBookShelf = (book, e) => {
+      const shelf = e.target.value
+      if (book.shelf !== shelf) {
+        BooksAPI.update(book, shelf).then(() => {
+          book.shelf = shelf
+          this.setState({
+            showingBooks: this.state.books.filter(b => b.id !== book.id).concat([book])
+          })
+        })
+      }
+    } 
+
+  updateQuery = (query) => {
+    this.setState ({query: query})
+  
+    if (query) {
+      BooksAPI.search(query).then(response => {
+
+        if (response.length) {
+      
+        this.setState({ 
+          showingBooks: response
+        })
+
+        }
+      })
+    }
+  }
 
   
   //   updateQuery = (query) => {
@@ -113,7 +126,8 @@ class BooksApp extends React.Component {
         )} />
 
       <Route exact path='/' render= {() => (
-            <ListBooks />
+            <ListBooks books={books} 
+                       onUpdateBookShelf={this.updateBookShelf}/>
       )} />
 
       </div>
