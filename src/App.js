@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import ListBooks from './Components/ListBooks';
+import Search from './Components/Search';
 import Book from './Components/Book'
 import {Route, Link} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
@@ -18,31 +19,6 @@ class BooksApp extends React.Component {
       this.setState({books: books})
     } )
   }
-
-  //doesn't work correctly
-  // updateQuery = (query) => {
-  //       this.setState({query: query})
-  //       let showingBooks = []
-  //       if (query) {
-  //         BooksAPI.search(query).then(response => {
-  //           if (response.length) {
-  //             showingBooks = response.map(b => {
-  //               const index = this.state.books.findIndex(c => c.id === b.id)
-  //              if( index >= 0 ) {
-  //                 return this.state.books[index]
-  //               } else {
-  //                 return b
-  //               }
-  //             })
-  //           }
-
-  //           this.setState({showingBooks: showingBooks})
-  //         })
-  //       }
-  //       else {
-  //         this.setState({showingBooks: showingBooks})
-  //       }
-  //      }
 
     updateBookShelf = (book, e) => {
       const shelf = e.target.value
@@ -77,19 +53,6 @@ class BooksApp extends React.Component {
   }
 
   
-  //   updateQuery = (query) => {
-  //   this.setState ({query: query})
-  
-  //   if (query) {
-  //     const match = new RegExp(EscapeRegEx(query), 'i');
-  //     let showingBooks = [];
-  //     showingBooks = this.state.showingBooks.filter((book) => match.test(book.title + book.authors))
-  //       this.setState({ 
-  //         showingBooks: showingBooks
-  //       })
-  //   }
-  // }
-  
 
   render() {
 
@@ -100,30 +63,8 @@ class BooksApp extends React.Component {
       <div className="app">
 
       <Route exact path='/search' render={() => (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <Link className="close-search" to='/'>Close</Link>
-              <div className="search-books-input-wrapper">
-                <input type="text" 
-                        placeholder="Search by title or author"
-                        value={query}
-                        onChange={(e) => this.updateQuery(e.target.value)}/>
-
-              </div>
-            </div>
-            <div className="search-books-results">
-              <ol className="books-grid">
-                {showingBooks.map((book, index) => 
-                  (
-                    <li key={index}>
-                      <Book book={book} onUpdateBookShelf={this.updateBookShelf}/>
-                  </li> 
-                  ))
-                }
-              </ol>
-            </div>
-          </div>
-        )} />
+      <Search query={query} onUpdateQuery={this.updateQuery} onUpdateBookShelf={this.updateBookShelf} showingBooks={showingBooks}/>
+      )} />
 
       <Route exact path='/' render= {() => (
             <ListBooks books={books} 
