@@ -1,7 +1,10 @@
 import React from 'react'
+import Rating from './Rating'
 
 
 class Book extends React.Component {
+
+    
     render () {
 
          //DESTRUCTURING
@@ -21,6 +24,7 @@ class Book extends React.Component {
                     </select> 
                 </div>
                 </div>
+                <Rating />
                 <div className="book-title">{book.title ? book.title : ''}</div>
                 <div className="book-authors">{book.authors ? book.authors.toString() : ''}</div>
             </div>

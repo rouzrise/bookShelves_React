@@ -17,6 +17,10 @@ body, .app {
 /* main page */
 
 .list-books-title {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
   font-family: Variane;
   font-size: 20px;
   padding: 10px 0;
@@ -31,7 +35,7 @@ body, .app {
 }
 
 .list-books-content {
-  padding: 0 0 80px;
+  padding: 80px 0 80px;
   flex: 1;
 }
 
@@ -76,7 +80,7 @@ body, .app {
 .search-books-bar {
   position: fixed;
   width: 100%;
-  top: 0;
+  top: 80px;
   left: 0;
   z-index: 5;
   display: flex;
@@ -109,7 +113,7 @@ body, .app {
 }
 
 .search-books-results {
-  padding: 80px 10px 20px;
+  padding: 160px 10px 20px;
 }
 
 /* books grid */
@@ -156,7 +160,7 @@ body, .app {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #ff6600;
+  background: #ff7b23;
   background-image: url('./icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -180,4 +184,37 @@ body, .app {
   padding: 20px 10px 0;
   text-align: center;
   font-size: 0.8em;
+}
+
+/* rating*/
+
+.star-rating__star {
+  display: inline-block;
+  margin-top: 20px;
+    padding: 3px;
+    vertical-align: middle;
+    line-height: 1;
+    font-size: 1.2em;
+    color: #ABABAB;
+    transition: color .2s ease-out;
+}
+
+.star-rating__star:hover {
+  cursor: pointer;
+}
+
+.is-selected {
+  color: #FFD700;
+}
+
+star-rating__star.is-disabled:hover {
+  cursor: default;
+}
+
+star-rating__star__checkbox {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px; width: 1px;
+  margin: -1px; padding: 0; border: 0;
 }

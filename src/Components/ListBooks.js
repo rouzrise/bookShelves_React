@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Book from './Book';
 
-class ListBooks extends Component {
+class ListBooks extends React.Component {
 
   render() {
 

@@ -8,6 +8,10 @@ class Search extends React.Component {
 
     return (
           <div className="search-books">
+            <div className="list-books-title">
+            <h1>MyReads</h1>
+            </div>
+            
             <div className="search-books-bar">
               <Link className="close-search" to='/'>Close</Link>
               <div className="search-books-input-wrapper">
