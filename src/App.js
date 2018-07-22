@@ -55,6 +55,9 @@ class BooksApp extends React.Component {
           this.setState({
             showingBooks: this.state.books.filter(b => b.id !== book.id).concat([book])
           })
+          BooksAPI.getAll().then((books) => {
+            this.setState({books: books})
+          } )
         })
       }
     } 
@@ -116,7 +119,7 @@ class BooksApp extends React.Component {
                 {showingBooks.map((book, index) => 
                   (
                     <li key={index}>
-                      <Book book={book}/>
+                      <Book book={book} onUpdateBookShelf={this.updateBookShelf}/>
                   </li> 
                   ))
                 }
