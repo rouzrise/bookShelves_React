@@ -1,3 +1,9 @@
+
+@font-face {
+    font-family: "Variane";
+    src: url('fonts/variane_script-webfont.woff');
+}
+
 html, body, .root {
   height: 100%;
 }
@@ -11,9 +17,12 @@ body, .app {
 /* main page */
 
 .list-books-title {
+  font-family: Variane;
+  font-size: 20px;
   padding: 10px 0;
-  background: #2e7c31;
+  background: #ff6600;
   text-align: center;
+  
 }
 .list-books-title h1 {
   font-weight: 400;
@@ -53,7 +62,7 @@ body, .app {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background: #2e7d32;
+  background: #ff6600;
   background-image: url('./icons/add.svg');
   background-repeat: no-repeat;
   background-position: center;
@@ -147,7 +156,7 @@ body, .app {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #60ac5d;
+  background: #ff6600;
   background-image: url('./icons/arrow-drop-down.svg');
   background-repeat: no-repeat;
   background-position: center;
