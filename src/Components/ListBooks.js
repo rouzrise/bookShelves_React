@@ -7,9 +7,12 @@ class ListBooks extends Component {
 
   render() {
 
-    const currentlyReading = this.props.books.filter(book => book.shelf === 'currentlyReading')
-    const wantToRead = this.props.books.filter(book => book.shelf === 'wantToRead')
-    const read = this.props.books.filter(book => book.shelf === 'read')
+     //DESTRUCTURING
+     const { books, onUpdateBookShelf } = this.props;
+
+    const currentlyReading = books.filter(book => book.shelf === 'currentlyReading')
+    const wantToRead = books.filter(book => book.shelf === 'wantToRead')
+    const read = books.filter(book => book.shelf === 'read')
 
     return (
       <div className="list-books">
@@ -29,7 +32,7 @@ class ListBooks extends Component {
                      currentlyReading.map((book) => (
                       <li key = {book.id}>
                         <Book book = {book}
-                              onUpdateBookShelf = {this.props.onUpdateBookShelf}/>
+                              onUpdateBookShelf = {onUpdateBookShelf}/>
                       </li>
                     ))
                     }
@@ -45,7 +48,7 @@ class ListBooks extends Component {
                      wantToRead.map((book) => (
                       <li key = {book.id}>
                         <Book book = {book}
-                              onUpdateBookShelf = {this.props.onUpdateBookShelf}/>
+                              onUpdateBookShelf = {onUpdateBookShelf}/>
                       </li>
                     ))
                     }
@@ -61,7 +64,7 @@ class ListBooks extends Component {
                      read.map((book) => (
                       <li key = {book.id}>
                         <Book book = {book}
-                              onUpdateBookShelf = {this.props.onUpdateBookShelf}/>
+                              onUpdateBookShelf = {onUpdateBookShelf}/>
                       </li>
                     ))
                     }
