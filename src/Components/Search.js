@@ -1,10 +1,14 @@
 import React from 'react'
 import Book from './Book'
 import {Link} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 class Search extends React.Component {
 
   render() {
+
+    //DESTRUCTURING
+    const { query, showingBooks, updateQuery, updateBookShelf } = this.props;
 
     return (
           <div className="search-books">
@@ -17,17 +21,17 @@ class Search extends React.Component {
               <div className="search-books-input-wrapper">
                 <input type="text" 
                         placeholder="Search by title or author"
-                        value={this.props.query}
-                        onChange={(e) => this.props.onUpdateQuery(e.target.value)}/>
+                        value={query}
+                        onChange={(e) => updateQuery(e.target.value)}/>
 
               </div>
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                {this.props.showingBooks.map((book, index) => 
+                {showingBooks.map((book, index) => 
                   (
                     <li key={index}>
-                      <Book book={book} onUpdateBookShelf={this.props.onUpdateBookShelf}/>
+                      <Book book={book} updateBookShelf={updateBookShelf}/>
                   </li> 
                   ))
                 }
@@ -36,6 +40,13 @@ class Search extends React.Component {
           </div>
     )
 }
+}
+
+Book.propTypes = {
+  query: PropTypes.string,
+  showingBooks: PropTypes.array,
+  updateQuery: PropTypes.func,
+  updateBookShelf: PropTypes.func
 }
 
 export default Search

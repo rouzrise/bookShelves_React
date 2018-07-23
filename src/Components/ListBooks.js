@@ -1,14 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Book from './Book';
+import PropTypes from 'prop-types';
+
 
 class ListBooks extends React.Component {
 
   render() {
 
-     //DESTRUCTURING
-     const { books, onUpdateBookShelf } = this.props;
+    //DESTRUCTURING
+    const { books, updateBookShelf } = this.props;
 
     const currentlyReading = books.filter(book => book.shelf === 'currentlyReading')
     const wantToRead = books.filter(book => book.shelf === 'wantToRead')
@@ -33,7 +34,7 @@ class ListBooks extends React.Component {
                      currentlyReading.map((book) => (
                       <li key = {book.id}>
                         <Book book = {book}
-                              onUpdateBookShelf = {onUpdateBookShelf} />
+                              updateBookShelf = {updateBookShelf} />
                       </li>
                     ))
                     }
@@ -50,7 +51,7 @@ class ListBooks extends React.Component {
                       wantToRead.map((book) => (
                       <li key = {book.id}>
                           <Book book = {book}
-                                onUpdateBookShelf = {onUpdateBookShelf}/>
+                                updateBookShelf = {updateBookShelf}/>
                       </li>
                       ))
                     }
@@ -66,7 +67,7 @@ class ListBooks extends React.Component {
                      read.map((book) => (
                       <li key = {book.id}>
                           <Book book = {book}
-                              onUpdateBookShelf = {onUpdateBookShelf}/>
+                              updateBookShelf = {updateBookShelf}/>
                       </li>
                     ))
                     }
@@ -85,10 +86,10 @@ class ListBooks extends React.Component {
   }
 }
 
-// ProjectItem.propTypes = {
-//     project: PropTypes.object,
-//     onDelete: PropTypes.func
-// }
+ListBooks.propTypes = {
+    books: PropTypes.array,
+    updateBookShelf: PropTypes.func
+}
 
 export default ListBooks;
 

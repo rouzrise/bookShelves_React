@@ -1,12 +1,13 @@
 import React from 'react'
 import Rating from './Rating'
+import PropTypes from 'prop-types';
 
 class Book extends React.Component {
 
     render () {
 
          //DESTRUCTURING
-        const { book, onUpdateBookShelf } = this.props;
+        const { book, updateBookShelf } = this.props;
 
         return(
             <div className="book">
@@ -15,7 +16,7 @@ class Book extends React.Component {
                      style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : ''})`}}></div>
                 <div className="book-shelf-changer">
                     <select value={book.shelf} 
-                            onChange={(e) => onUpdateBookShelf(book, e)}>
+                            onChange={(e) => updateBookShelf(book, e)}>
                     <option value="move" disabled>Move to...</option>
                     <option value="currentlyReading">Currently Reading</option>
                     <option value="wantToRead">Want to Read</option>
@@ -30,6 +31,11 @@ class Book extends React.Component {
             </div>
         )
     }
+}
+
+Book.propTypes = {
+    book: PropTypes.object,
+    updateBookShelf: PropTypes.func
 }
 
 export default Book
