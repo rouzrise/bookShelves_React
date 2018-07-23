@@ -194,7 +194,7 @@ body, .app {
 
 /* rating*/
 
-.star-rating__star {
+.star {
   display: inline-block;
   margin-top: 20px;
     padding: 3px;
@@ -205,22 +205,10 @@ body, .app {
     transition: color .2s ease-out;
 }
 
-.star-rating__star:hover {
+.star:hover {
   cursor: pointer;
 }
 
 .is-selected {
   color: #FFD700;
-}
-
-star-rating__star.is-disabled:hover {
-  cursor: default;
-}
-
-star-rating__star__checkbox {
-  position: absolute;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  height: 1px; width: 1px;
-  margin: -1px; padding: 0; border: 0;
 }

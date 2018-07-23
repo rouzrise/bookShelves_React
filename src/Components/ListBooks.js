@@ -32,7 +32,7 @@ class ListBooks extends React.Component {
                      currentlyReading.map((book) => (
                       <li key = {book.id}>
                         <Book book = {book}
-                              onUpdateBookShelf = {onUpdateBookShelf}/>
+                              onUpdateBookShelf = {onUpdateBookShelf} />
                       </li>
                     ))
                     }
@@ -47,7 +47,7 @@ class ListBooks extends React.Component {
                      wantToRead.length &&
                      wantToRead.map((book) => (
                       <li key = {book.id}>
-                        <Book book = {book}
+                          <Book book = {book}
                               onUpdateBookShelf = {onUpdateBookShelf}/>
                       </li>
                     ))
@@ -63,7 +63,7 @@ class ListBooks extends React.Component {
                      read.length &&
                      read.map((book) => (
                       <li key = {book.id}>
-                        <Book book = {book}
+                          <Book book = {book}
                               onUpdateBookShelf = {onUpdateBookShelf}/>
                       </li>
                     ))

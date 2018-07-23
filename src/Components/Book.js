@@ -4,7 +4,7 @@ import Rating from './Rating'
 
 class Book extends React.Component {
 
-    
+
 
     
     render () {

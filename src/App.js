@@ -51,7 +51,6 @@ class BooksApp extends React.Component {
     }
   }
 
-  
   render() {
 
     //DESTRUCTURING
@@ -61,12 +60,16 @@ class BooksApp extends React.Component {
       <div className="app">
 
       <Route exact path='/search' render={() => (
-      <Search query={query} onUpdateQuery={this.updateQuery} onUpdateBookShelf={this.updateBookShelf} showingBooks={showingBooks}/>
+      <Search query={query} 
+              onUpdateQuery={this.updateQuery} 
+              onUpdateBookShelf={this.updateBookShelf} 
+              showingBooks={showingBooks}
+              />
       )} />
 
       <Route exact path='/' render= {() => (
             <ListBooks books={books} 
-                       onUpdateBookShelf={this.updateBookShelf}/>
+                      onUpdateBookShelf={this.updateBookShelf}/>
       )} />
 
       </div>
