@@ -13,12 +13,16 @@ class Rating extends React.Component {
     }
 
     render() {
+
+      //DESTRUCTURING
+      const { rating } = this.state;
+
       let stars = [];
       
       for(let i = 0; i < 3; i++) {
         let style = 'star';
         
-        if (this.state.rating >= i && this.state.rating != null) {
+        if (rating >= i && rating != null) {
           style += ' is-selected';
         }
   
