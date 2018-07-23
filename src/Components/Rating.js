@@ -13,21 +13,16 @@ class Rating extends React.Component {
         temp_rating: rating
         })
     }
-
-    star_over = (rating) => {
-        this.state.temp_rating = this.state.rating;
-        this.state.rating = rating;
-        
+    
+      star_over = (rating) => {    
         this.setState({
-          rating: this.state.rating,
-          temp_rating: this.state.temp_rating
+          rating: rating,
+          temp_rating: this.state.rating
         });
       }
 
     star_out = () => {
-        this.state.rating = this.state.temp_rating;
-        
-        this.setState({ rating: this.state.rating });
+        this.setState({ rating: this.state.temp_rating });
       }
 
 
@@ -43,7 +38,7 @@ class Rating extends React.Component {
   
         stars.push(
           <label
-            className={klass}
+            className={this.klass}
             onClick={this.rate.bind(this, i)}
             onMouseOver={this.star_over.bind(this, i)}
             onMouseOut={this.star_out}>
@@ -55,7 +50,6 @@ class Rating extends React.Component {
       return (
         <div className="star-rating">
           {stars}
-          {console.log(stars)}
         </div>
       );
     }

@@ -4,6 +4,10 @@
     src: url('fonts/variane_script-webfont.woff');
 }
 
+
+@import url('https://fonts.googleapis.com/css?family=Do+Hyeon|Francois+One|Roboto:400i');
+
+
 html, body, .root {
   height: 100%;
 }
@@ -51,7 +55,9 @@ body, .app {
 
 .bookshelf-title {
   border-bottom: 1px solid #dedede;
+  font-family: 'Roboto', sans-serif;
 }
+
 .bookshelf-books {
   text-align: center;
 }

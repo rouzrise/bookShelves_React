@@ -2,8 +2,7 @@ import React from 'react'
 import './App.css'
 import ListBooks from './Components/ListBooks';
 import Search from './Components/Search';
-import Book from './Components/Book'
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 
 
