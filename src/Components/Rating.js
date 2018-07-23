@@ -24,9 +24,9 @@ class Rating extends React.Component {
   
         stars.push(
           <label
+            key={i}
             className={style}
-            onClick={this.changeRating.bind(this, i)}
-            >
+            onClick={this.changeRating.bind(this, i)}>
             ★
           </label>
         );

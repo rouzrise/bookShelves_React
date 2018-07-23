@@ -19,20 +19,21 @@ class BooksApp extends React.Component {
     } )
   }
 
-    updateBookShelf = (book, e) => {
-      const shelf = e.target.value
-      if (book.shelf !== shelf) {
-        BooksAPI.update(book, shelf).then(() => {
-          book.shelf = shelf
-          this.setState({
-            showingBooks: this.state.books.filter(b => b.id !== book.id).concat([book])
-          })
-          BooksAPI.getAll().then((books) => {
-            this.setState({books: books})
-          } )
+  updateBookShelf = (book, e) => {
+    const shelf = e.target.value
+    if (book.shelf !== shelf) {
+      BooksAPI.update(book, shelf).then(() => {
+        book.shelf = shelf
+        book.rating = 1
+        this.setState({
+          showingBooks: this.state.books.filter(b => b.id !== book.id).concat([book])
         })
-      }
-    } 
+        BooksAPI.getAll().then((books) => {
+          this.setState({books: books})
+        } )
+      })
+    }
+  } 
 
   updateQuery = (query) => {
     this.setState ({query: query})
@@ -69,7 +70,7 @@ class BooksApp extends React.Component {
 
       <Route exact path='/' render= {() => (
             <ListBooks books={books} 
-                      onUpdateBookShelf={this.updateBookShelf}/>
+                       onUpdateBookShelf={this.updateBookShelf}/>
       )} />
 
       </div>

@@ -5,16 +5,6 @@ import Book from './Book';
 
 class ListBooks extends React.Component {
 
-    state = {
-      rating: null,
-  }
-
-  changeRating = (rating) => {
-      this.setState ({
-          rating: rating,
-      })
-  }
-
   render() {
 
      //DESTRUCTURING
@@ -23,25 +13,6 @@ class ListBooks extends React.Component {
     const currentlyReading = books.filter(book => book.shelf === 'currentlyReading')
     const wantToRead = books.filter(book => book.shelf === 'wantToRead')
     const read = books.filter(book => book.shelf === 'read')
-
-    let stars = [];
-      
-    for(let i = 0; i < 3; i++) {
-      let style = 'star';
-      
-      if (this.state.rating >= i && this.state.rating != null) {
-        style += ' is-selected';
-      }
-
-      stars.push(
-        <label
-          className={style}
-          onClick={this.changeRating.bind(this, i)}
-          >
-          ★
-        </label>
-      );
-    }
 
     return (
       <div className="list-books">
@@ -52,13 +23,9 @@ class ListBooks extends React.Component {
 
         <div className="list-books-content">
           <div>
+
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
-            
-              <div className="ratingFilter">
-                {stars}
-              </div>
-
               <div className="bookshelf-books">
                 <ol className="books-grid">
                     {
@@ -73,18 +40,19 @@ class ListBooks extends React.Component {
                 </ol>
               </div>
             </div>
+
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                {
-                     wantToRead.length &&
-                     wantToRead.map((book) => (
+                    {
+                      wantToRead.length &&
+                      wantToRead.map((book) => (
                       <li key = {book.id}>
                           <Book book = {book}
-                              onUpdateBookShelf = {onUpdateBookShelf}/>
+                                onUpdateBookShelf = {onUpdateBookShelf}/>
                       </li>
-                    ))
+                      ))
                     }
                 </ol>
               </div>
@@ -93,7 +61,7 @@ class ListBooks extends React.Component {
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                {
+                    {
                      read.length &&
                      read.map((book) => (
                       <li key = {book.id}>
