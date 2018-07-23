@@ -47,10 +47,23 @@ body, .app {
   padding: 0 10px 20px;
 }
 
+.ratingFilter {
+  position: absolute;
+  top: 85px;
+  right: 10px;
+}
+
 @media (min-width: 600px) {
   .bookshelf {
     padding: 0 20px 40px;
   }
+
+  .ratingFilter {
+    position: absolute;
+    top: 85px;
+    right: 20px;
+  }
+
 }
 
 .bookshelf-title {
@@ -212,3 +225,5 @@ body, .app {
 .is-selected {
   color: #FFD700;
 }
+
+
