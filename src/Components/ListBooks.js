@@ -5,15 +5,12 @@ import PropTypes from 'prop-types';
 
 
 class ListBooks extends React.Component {
-  state = {
-    bookCategoryName: ['Currently Reading', 'Want to read', 'Read']
-  }
+
 
   render() {
 
     //DESTRUCTURING
     const { books, updateBookShelf } = this.props;
-    const { bookCategoryName } = this.state;
 
     return (
       <div className="list-books">
@@ -26,13 +23,13 @@ class ListBooks extends React.Component {
           <div>
           <Shelf bookCategory ={books.filter(book => book.shelf === 'currentlyReading')}
                 updateBookShelf = {updateBookShelf}
-                bookCategoryName = {bookCategoryName[0]}/>
+                bookCategoryName = {'Currently Reading'}/>
           <Shelf bookCategory ={books.filter(book => book.shelf === 'wantToRead')}
                 updateBookShelf = {updateBookShelf}
-                bookCategoryName = {bookCategoryName[1]}/>
+                bookCategoryName = {'Want to read'}/>
           <Shelf bookCategory ={books.filter(book => book.shelf === 'read')}
                 updateBookShelf = {updateBookShelf}
-                bookCategoryName = {bookCategoryName[2]}/>
+                bookCategoryName = {'Read'}/>
 
           </div>
       </div>

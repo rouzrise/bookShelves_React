@@ -2,13 +2,8 @@ import React from 'react'
 import Rating from './Rating'
 import PropTypes from 'prop-types';
 
-class Book extends React.Component {
-
-    render () {
-
-         //DESTRUCTURING
-        const { book, updateBookShelf } = this.props;
-
+const Book = ({book, updateBookShelf}) => {
+  
         let encodedURI = encodeURI(book.title)
         let bookCover = `http://via.placeholder.com/128x193?text=${encodedURI}`
 
@@ -33,7 +28,6 @@ class Book extends React.Component {
                 <div className="book-authors">{book.authors ? book.authors.toString() : ''}</div>
             </div>
         )
-    }
 }
 
 Book.propTypes = {

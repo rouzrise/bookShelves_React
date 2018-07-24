@@ -3,12 +3,8 @@ import Book from './Book';
 import PropTypes from 'prop-types';
 
 
-class Shelf extends React.Component {
-
-  render() {
-
-    //DESTRUCTURING
-    const { bookCategory, bookCategoryName, updateBookShelf } = this.props;
+const Shelf = ({ bookCategory, bookCategoryName, updateBookShelf }) => {
+    
     return (
 
         <div className="bookshelf">
@@ -28,7 +24,6 @@ class Shelf extends React.Component {
         </div>
         </div>
     )
-  }
 }
 
 Shelf.propTypes = {
