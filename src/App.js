@@ -24,10 +24,9 @@ class BooksApp extends React.Component {
     if (book.shelf !== shelf) {
       BooksAPI.update(book, shelf).then(() => {
         book.shelf = shelf
-        book.rating = 1
-        this.setState({
-          showingBooks: this.state.books.filter(b => b.id !== book.id).concat([book])
-        })
+        // this.setState({
+        //   showingBooks: this.state.books.filter(b => b.id !== book.id).concat([book])
+        // })
         BooksAPI.getAll().then((books) => {
           this.setState({books: books})
         } )
@@ -35,22 +34,40 @@ class BooksApp extends React.Component {
     }
   } 
 
-  updateQuery = (query) => {
-    this.setState ({query: query})
-  
-    if (query) {
-      BooksAPI.search(query).then(response => {
 
-        if (response.length) {
-      
-        this.setState({ 
-          showingBooks: response
-        })
+  setShelf = (books) => {
+    books.map(book => (this.state.books.filter((b) => b.id === book.id).map(b => book.shelf = b.shelf)))
+  }
 
+   updateQuery = (query) => {
+    this.setState({query: query}) //this is done so that everything you print in searchbox could be reflected on the page
+
+
+      let showingBooks = []
+    
+      if (query.trim() === '') {
+          this.setState({showingBooks: []})
+          console.log("print some possible words in query - 'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'")
+      }
+
+      else {
+        BooksAPI.search(query).then(response => {
+        if (response.error) {
+          this.setState({showingBooks: []})
+                          // automatically making query empty is not ok here as soon as it can confuse user
+                          // query: ''}) 
+          console.log("Error:", response.error, ". If error you see is 'empty query' it means you are searching for invalid words. Please try these ones - 'Android', 'Art', 'Artificial Intelligence', 'Astronomy', 'Austen', 'Baseball', 'Basketball', 'Bhagat', 'Biography', 'Brief', 'Business', 'Camus', 'Cervantes', 'Christie', 'Classics', 'Comics', 'Cook', 'Cricket', 'Cycling', 'Desai', 'Design', 'Development', 'Digital Marketing', 'Drama', 'Drawing', 'Dumas', 'Education', 'Everything', 'Fantasy', 'Film', 'Finance', 'First', 'Fitness', 'Football', 'Future', 'Games', 'Gandhi', 'Homer', 'Horror', 'Hugo', 'Ibsen', 'Journey', 'Kafka', 'King', 'Lahiri', 'Larsson', 'Learn', 'Literary Fiction', 'Make', 'Manage', 'Marquez', 'Money', 'Mystery', 'Negotiate', 'Painting', 'Philosophy', 'Photography', 'Poetry', 'Production', 'Programming', 'React', 'Redux', 'River', 'Robotics', 'Rowling', 'Satire', 'Science Fiction', 'Shakespeare', 'Singh', 'Swimming', 'Tale', 'Thrun', 'Time', 'Tolstoy', 'Travel', 'Ultimate', 'Virtual Reality', 'Web Development', 'iOS'")
+
+        }
+        else {
+          response.map(b => b.shelf='none')
+          this.setShelf(response)
+          this.setState({showingBooks: response})
         }
       })
     }
-  }
+   }
+
 
   render() {
 

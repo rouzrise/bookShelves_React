@@ -28,10 +28,10 @@ class Search extends React.Component {
             </div>
             <div className="search-books-results">
               <ol className="books-grid">
-                {showingBooks.map((book, index) => 
+                {showingBooks.map((book) => 
                   (
-                    <li key={index}>
-                      <Book book={book} updateBookShelf={updateBookShelf}/>
+                    <li key={book.id}>
+                      <Book book={book} updateBookShelf={updateBookShelf} />
                   </li> 
                   ))
                 }

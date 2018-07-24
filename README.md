@@ -29,6 +29,8 @@ There are three shelves:
 * Want to Read
 * Read
 
+__NOTE__: If book is on the shelf - select sign will be orange. If you haven't put the book to any shelf yet - the select sign will be blue.
+
 #### Look at Book structure at Main page
 On the main page of the App you can see all the Books you marked as Currently Reading, Want to Read or Read on the corresponding shelves.
 
