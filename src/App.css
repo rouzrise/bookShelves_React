@@ -279,6 +279,7 @@ body, .app {
   text-transform: uppercase;
   text-decoration: none;
   transition: background 300ms ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
 .page404 .backToMain:hover {

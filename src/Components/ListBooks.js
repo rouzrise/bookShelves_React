@@ -1,19 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Book from './Book';
+import Shelf from './Shelf';
 import PropTypes from 'prop-types';
 
 
 class ListBooks extends React.Component {
+  state = {
+    bookCategoryName: ['Currently Reading', 'Want to read', 'Read']
+  }
 
   render() {
 
     //DESTRUCTURING
     const { books, updateBookShelf } = this.props;
-
-    const currentlyReading = books.filter(book => book.shelf === 'currentlyReading')
-    const wantToRead = books.filter(book => book.shelf === 'wantToRead')
-    const read = books.filter(book => book.shelf === 'read')
+    const { bookCategoryName } = this.state;
+    const currentlyReading = books.filter(book => book.shelf === 'currentlyReading');
 
     return (
       <div className="list-books">
@@ -24,56 +26,17 @@ class ListBooks extends React.Component {
 
         <div className="list-books-content">
           <div>
+          {console.log(currentlyReading)}
+          <Shelf bookCategory ={currentlyReading}
+                updateBookShelf = {updateBookShelf}
+                bookCategoryName = {bookCategoryName[0]}/>
+          <Shelf bookCategory ={books.filter(book => book.shelf === 'wantToRead')}
+                updateBookShelf = {updateBookShelf}
+                bookCategoryName = {bookCategoryName[1]}/>
+          <Shelf bookCategory ={books.filter(book => book.shelf === 'read')}
+                updateBookShelf = {updateBookShelf}
+                bookCategoryName = {bookCategoryName[2]}/>
 
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Currently Reading</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                    {
-                     currentlyReading.length &&
-                     currentlyReading.map((book) => (
-                      <li key = {book.id}>
-                        <Book book = {book}
-                              updateBookShelf = {updateBookShelf} />
-                      </li>
-                    ))
-                    }
-                </ol>
-              </div>
-            </div>
-
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Want to Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                    {
-                      wantToRead.length &&
-                      wantToRead.map((book) => (
-                      <li key = {book.id}>
-                          <Book book = {book}
-                                updateBookShelf = {updateBookShelf}/>
-                      </li>
-                      ))
-                    }
-                </ol>
-              </div>
-            </div>
-            <div className="bookshelf">
-              <h2 className="bookshelf-title">Read</h2>
-              <div className="bookshelf-books">
-                <ol className="books-grid">
-                    {
-                     read.length &&
-                     read.map((book) => (
-                      <li key = {book.id}>
-                          <Book book = {book}
-                              updateBookShelf = {updateBookShelf}/>
-                      </li>
-                    ))
-                    }
-                </ol>
-              </div>
-            </div>
           </div>
       </div>
 
