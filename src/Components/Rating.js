@@ -10,6 +10,8 @@ class Rating extends React.Component {
         this.setState ({
             rating: rating,
         })
+
+        
     }
 
     render() {

@@ -189,7 +189,8 @@ body, .app {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-.book-shelf-changernone {
+.book-shelf-changernone,
+.book-shelf-changerundefined {
   position: absolute;
   right: 0;
   bottom: -10px;
@@ -207,7 +208,8 @@ body, .app {
 .book-shelf-changercurrentlyReading select,
 .book-shelf-changerread select,
 .book-shelf-changerwantToRead select,
-.book-shelf-changernone select {
+.book-shelf-changernone select,
+.book-shelf-changerundefined select {
   width: 100%;
   height: 100%;
   opacity: 0;
