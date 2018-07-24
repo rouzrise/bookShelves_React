@@ -41,9 +41,6 @@ class BooksApp extends React.Component {
 
    updateQuery = (query) => {
     this.setState({query: query}) //this is done so that everything you print in searchbox could be reflected on the page
-
-
-      let showingBooks = []
     
       if (query.trim() === '') {
           this.setState({showingBooks: []})
