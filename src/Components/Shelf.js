@@ -9,13 +9,7 @@ class Shelf extends React.Component {
 
     //DESTRUCTURING
     const { bookCategory, bookCategoryName, updateBookShelf } = this.props;
-
-    // const currentlyReading = books.filter(book => book.shelf === 'currentlyReading')
-    // const wantToRead = books.filter(book => book.shelf === 'wantToRead')
-    // const read = books.filter(book => book.shelf === 'read')
-
     return (
-
 
         <div className="bookshelf">
         <h2 className="bookshelf-title">{bookCategoryName}</h2>
@@ -30,7 +24,6 @@ class Shelf extends React.Component {
                 </li>
               ))
               }
-              {/* {console.log(bookCategory)} */}
           </ol>
         </div>
         </div>
@@ -38,10 +31,11 @@ class Shelf extends React.Component {
   }
 }
 
-// Shelf.propTypes = {
-//     books: PropTypes.array,
-//     updateBookShelf: PropTypes.func
-// }
+Shelf.propTypes = {
+    updateBookShelf: PropTypes.func,
+    bookCategory: PropTypes.array,
+    bookCategoryName: PropTypes.string
+}
 
 export default Shelf;
 

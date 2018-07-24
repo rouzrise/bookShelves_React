@@ -33,7 +33,7 @@ class Search extends React.Component {
 
         }
         else {
-          //No need to do it as soon as 'none' is automatically set for the book with no book.shelf
+          //No need to do line below as soon as 'none' is automatically set for the book with no book.shelf in Book.js
           // response.map(b => b.shelf='none')
           this.setShelf(response)
           this.setState({showingBooks: response})
@@ -84,9 +84,6 @@ class Search extends React.Component {
 }
 
 Book.propTypes = {
-  query: PropTypes.string,
-  showingBooks: PropTypes.array,
-  updateQuery: PropTypes.func,
   updateBookShelf: PropTypes.func
 }
 

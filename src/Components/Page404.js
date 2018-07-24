@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
+
 
 class Page404 extends React.Component {
 
@@ -15,10 +15,5 @@ class Page404 extends React.Component {
         )
     }
 }
-
-// Page404.propTypes = {
-//     book: PropTypes.object,
-//     updateBookShelf: PropTypes.func
-// }
 
 export default Page404

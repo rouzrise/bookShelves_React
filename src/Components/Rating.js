@@ -3,15 +3,13 @@ import React from 'react';
 class Rating extends React.Component {
 
     state = {
-        rating: null,
+      rating: null
     }
 
     changeRating = (rating) => {
         this.setState ({
             rating: rating,
         })
-
-        
     }
 
     render() {
