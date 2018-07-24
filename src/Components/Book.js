@@ -9,11 +9,14 @@ class Book extends React.Component {
          //DESTRUCTURING
         const { book, updateBookShelf } = this.props;
 
+        let encodedURI = encodeURI(book.title)
+        let bookCover = `http://via.placeholder.com/128x193?text=${encodedURI}`
+
         return(
             <div className="book">
                 <div className="book-top">
                 <div className="book-cover" 
-                     style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : ''})`}}></div>
+                     style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks ? book.imageLinks.thumbnail : bookCover})`}}></div>
                 <div className={`book-shelf-changer${book.shelf}`}>
                     <select value={book.shelf} 
                             onChange={(e) => updateBookShelf(book, e)}>
