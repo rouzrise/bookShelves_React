@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 
 class ListBooks extends React.Component {
 
-
   render() {
 
     //DESTRUCTURING
