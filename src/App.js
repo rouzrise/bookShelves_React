@@ -49,7 +49,7 @@ class BooksApp extends React.Component {
                   />
           )} />
 
-          <Route exact path='/' render= {() => (
+          <Route exact path='/bookShelves_React' render= {() => (
                 <ListBooks books={books} 
                           updateBookShelf={this.updateBookShelf}/>
           )} />
