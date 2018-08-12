@@ -7,7 +7,7 @@ const Page404 = () => {
         <div className="page404">
             <div className="container">
                 <h1>404</h1>
-                <Link className="backToMain" to='/'>Take me back</Link>
+                <Link className="backToMain" to='/bookShelves_React'>Take me back</Link>
             </div>
         </div>
     )
